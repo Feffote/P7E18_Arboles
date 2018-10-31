@@ -21,5 +21,11 @@ void eliminarNodo(Nodo *);
 Nodo *minimo(Nodo *);
 void reemplazar(Nodo *, Nodo *);
 void destruirNodo (Nodo *);
+void calcularPeso(int);
+void calcularHojas(int);
+void elementoRepetido(int);
+void elementoPorNivel(int);
+int calcularAltura(Nodo *);
+void sumarElementos(Nodo *);
 
 #endif //P7E18_ARBOLES_MAIN_H

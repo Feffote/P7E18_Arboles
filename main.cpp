@@ -25,7 +25,13 @@ void menu(){
         cout<<"5. Recorrer el arbol en inOrden"<<endl;
         cout<<"6. Recorrer el arbol en inOrden"<<endl;
         cout<<"7. Eliminar nodo del arbol"<<endl;
-        cout<<"8. Salir"<<endl;
+        cout<<"8. Calcular peso del Arbol"<<endl;
+        cout<<"9. Calcular cantidad de hojas"<<endl;
+        cout<<"10. Elemento Repetido"<<endl;
+        cout<<"11. Cantidad de elementos por nivel"<<endl;
+        cout<<"12. Calcular altura del Arbol"<<endl;
+        cout<<"13. Sumar todos los elementos del Arbol"<<endl;
+        cout<<"14. Salir"<<endl;
         cout<<"Opcion: ";
         cin>>opcion;
 
@@ -73,9 +79,18 @@ void menu(){
                 cout<<"\n";
                 system("pause");
                 break;
+            case 8: ;
+            case 9: ;
+            case 10: ;
+            case 11: ;
+            case 12: cout<<"\nAltura del arbol: "<<calcularAltura(arbol);
+                    cout<<"\n";
+                    system("pause");
+                    break;
+            case 13: ;
         }
         system("cls");
-    }while(opcion !=8);
+    }while(opcion !=14);
 }
 
 //funcion crear nuevo nodo para el arbol
@@ -244,6 +259,31 @@ void eliminarNodo(Nodo *nodoEliminar) {
     else{ //nodo sin hijos, nodo hoja
         reemplazar(nodoEliminar, NULL);
         destruirNodo(nodoEliminar);
+    }
+}
+
+
+void calcularPeso(int);
+void calcularHojas(int);
+void elementoRepetido(int);
+void elementoPorNivel(int);
+
+int calcularAltura(Nodo *arbol) {
+    // Base case: empty tree has height 0
+    if (arbol == nullptr)
+        return 0;
+
+    // recurse for left and right subtree and consider maximum depth
+    return max(calcularAltura(arbol->izq), calcularAltura(arbol->der)) + 1;
+}
+
+void sumarElementos(Nodo *arbol) {
+    if (arbol == NULL) {
+        return;
+    } else {
+        cout << arbol->dato << " + " << " = " << "";
+        preOrden(arbol->izq);
+        preOrden(arbol->der);
     }
 }
 
