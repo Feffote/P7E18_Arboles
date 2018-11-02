@@ -23,7 +23,7 @@ void reemplazar(Nodo *, Nodo *);
 void destruirNodo (Nodo *);
 //void vectorizar(Nodo *, vector <int> &lista);
 void calcularPeso(Nodo *);
-void int calcularHojas(Nodo *, int);
+//void int calcularHojas(Nodo *, int);
 void nodoRepetido(Nodo *arbol, int);
 void elementoPorNivel(int);
 int calcularAltura(Nodo *);
