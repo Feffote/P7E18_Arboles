@@ -2,6 +2,7 @@
 //#include<conio.h>
 #include<stdlib.h>
 #include "main.h"
+#include <vector>
 using namespace std;
 
 Nodo *arbol = NULL;
@@ -79,15 +80,30 @@ void menu(){
                 cout<<"\n";
                 system("pause");
                 break;
-            case 8: ;
+            case 8: cout<<"\nPeso del arbol: ";
+                calcularPeso(arbol);
+                cout<<"\n";
+                system("pause");
+                break;
             case 9: ;
-            case 10: ;
+            case 10: cout<< "Número que desea buscar: ";
+                cin>>dato;
+
+                cout << "El número aparece ";
+                nodoRepetido(arbol, dato);
+                cout<< " veces."<< endl;
+                cout << "\n";
+                break;
             case 11: ;
             case 12: cout<<"\nAltura del arbol: "<<calcularAltura(arbol);
                     cout<<"\n";
                     system("pause");
                     break;
-            case 13: ;
+            case 13: cout<<"\nLa suma de todos los elementos del arbol: ";
+                    sumarElementos(arbol);
+                    cout<<"\n";
+                    system("pause");
+                    break;
         }
         system("cls");
     }while(opcion !=14);
@@ -127,10 +143,7 @@ void mostrarArbol(Nodo * arbol, int cont){
     }
     else{
         mostrarArbol(arbol->der, cont+1);
-        for(
-                int i = 0;
-                i<cont;
-                i++){
+        for(int i = 0; i<cont; i++){
             cout<<"   ";
         }
         cout<<arbol->dato<<endl;
@@ -262,11 +275,43 @@ void eliminarNodo(Nodo *nodoEliminar) {
     }
 }
 
+void vectorizar(Nodo *arbol, vector <int> &lista) {
+    if (arbol != nullptr) {
+        lista.push_back(arbol->dato);     //agrega los números del árbol al vector “lista”
+        vectorizar(arbol->izq, lista);
+        vectorizar(arbol->der, lista);
+    }
+}
 
-void calcularPeso(int);
-void calcularHojas(int);
-void elementoRepetido(int);
-void elementoPorNivel(int);
+void calcularPeso(Nodo *arbol){
+    vector <int> lista ;
+    vectorizar(arbol,lista);
+    cout << lista.size() <<endl;
+}
+
+void calcularHojas(Nodo *arbol, int c){
+    vector<int> lista;
+    vectorizar(arbol, lista);
+    int cont1 = 0;
+    if (arbol == nullptr){
+        cont1++;
+    }
+}
+
+//void elementoPorNivel(int);
+
+//cantidad de veces que aparece un número dado en el árbol
+void nodoRepetido(Nodo *arbol, int n){
+    vector <int> lista;
+    vectorizar(arbol, lista);
+    int cont = 0;
+    for (int i=0 ; i<lista.size(); i=i+1){//recorre el vector y cuando encuentra el número, cont+1
+        if (n == lista[i]){
+            cont++;
+        }
+    }
+    cout<<cont<<endl;
+}
 
 int calcularAltura(Nodo *arbol) {
     // Base case: empty tree has height 0
@@ -277,13 +322,13 @@ int calcularAltura(Nodo *arbol) {
     return max(calcularAltura(arbol->izq), calcularAltura(arbol->der)) + 1;
 }
 
-void sumarElementos(Nodo *arbol) {
-    if (arbol == NULL) {
-        return;
-    } else {
-        cout << arbol->dato << " + " << " = " << "";
-        preOrden(arbol->izq);
-        preOrden(arbol->der);
+void sumarElementos (Nodo *arbol){
+    vector <int> lista ;
+    vectorizar(arbol,lista);
+    int sum = 0;
+    for (int i = 0; i<lista.size(); i++){
+        sum += lista[i];
     }
+    cout<< sum<<endl;
 }
 
